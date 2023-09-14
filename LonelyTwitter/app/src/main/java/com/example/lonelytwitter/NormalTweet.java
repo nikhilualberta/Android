@@ -1,3 +1,4 @@
+package com.example.lonelytwitter;
 import java.util.Date;
 
 public class NormalTweet extends Tweet {
@@ -14,3 +15,4 @@ public class NormalTweet extends Tweet {
         return Boolean.FALSE;
     }
 }
+

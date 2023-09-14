@@ -1,3 +1,4 @@
+package com.example.lonelytwitter;
 import java.util.Date;
 
 public class SadMood extends CurrentMood{

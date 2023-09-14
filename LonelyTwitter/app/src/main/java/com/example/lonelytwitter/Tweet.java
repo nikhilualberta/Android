@@ -1,8 +1,9 @@
+package com.example.lonelytwitter;
 import java.util.Date;
 
 public abstract class Tweet implements Tweetable{
-    Date date;
-    String message;
+    private Date date;
+    private String message;
 
     Tweet(String message){
         this.message = message;

@@ -1,7 +1,8 @@
+package com.example.lonelytwitter;
 import java.util.Date;
 
 public abstract class CurrentMood {
-    Date date;
+    private Date date;
 
     public CurrentMood() {
         this.date = new Date();
