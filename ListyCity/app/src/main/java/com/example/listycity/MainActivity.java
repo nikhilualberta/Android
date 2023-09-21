@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -20,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> dataList;
     Button deleteButton;
     Button addButton;
+    Button confirmButton;
+    EditText addCityInput;
     int selectedPosition;
 
     @Override
@@ -30,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         cityList = findViewById(R.id.city_list);
         deleteButton = findViewById(R.id.deleteButton);
         addButton = findViewById(R.id.addButton);
+        confirmButton = findViewById(R.id.confirmButton);
+        addCityInput = findViewById(R.id.addCityInput);
 
         String []cities = {"Edmonton", "Vancouver", "Moscow", "Sydney", "Berlin", "Vienna", "Tokyo", "Beijing", "Osaka", "New Delhi"};
 
@@ -39,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         cityAdapter = new ArrayAdapter<>(this, R.layout.content, dataList);
 
         cityList.setAdapter(cityAdapter);
-
 
         cityList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
@@ -52,13 +56,34 @@ public class MainActivity extends AppCompatActivity {
 
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                if (selectedPosition != AdapterView.INVALID_POSITION) {
+            public void onClick(View view) {
+                try {
                     dataList.remove(selectedPosition);
                     cityAdapter.notifyDataSetChanged();
                     cityList.clearChoices();
                     selectedPosition = -1;
                 }
+                catch(Exception e) {
+                }
+            }
+        });
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                confirmButton.setVisibility(View.VISIBLE);
+                addCityInput.setVisibility(View.VISIBLE);
+            }
+        });
+
+        confirmButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                confirmButton.setVisibility(View.INVISIBLE);
+                addCityInput.setVisibility(View.INVISIBLE);
+                String text = addCityInput.getText().toString();
+                dataList.add(text);
+                cityAdapter.notifyDataSetChanged();
             }
         });
 
