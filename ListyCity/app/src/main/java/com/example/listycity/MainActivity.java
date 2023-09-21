@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> dataList;
     Button deleteButton;
     Button addButton;
-
+    int selectedPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,19 +43,21 @@ public class MainActivity extends AppCompatActivity {
 
         cityList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
+        cityList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedPosition = position;
+            }
+        });
+
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Get the selected item position
-                int selectedPosition = cityList.getCheckedItemPosition();
-
                 if (selectedPosition != AdapterView.INVALID_POSITION) {
-                    // Remove the selected item
                     dataList.remove(selectedPosition);
                     cityAdapter.notifyDataSetChanged();
-
-                    // Clear the selection
                     cityList.clearChoices();
+                    selectedPosition = -1;
                 }
             }
         });
