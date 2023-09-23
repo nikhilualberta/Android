@@ -7,41 +7,54 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 public class ExpenseAdapter extends
         RecyclerView.Adapter<ExpenseAdapter.ViewHolder>{
+
+    private ArrayList<ExpenseRecord> expenseList;
+    public ExpenseAdapter(ArrayList<ExpenseRecord> expenseList, RecyclerViewInterface recyclerViewInterface) {
+        this.expenseList = expenseList;
+        this.recyclerViewInterface = recyclerViewInterface;
+    }
+    private RecyclerViewInterface recyclerViewInterface;
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView expenseLayoutName;
         public TextView expenseLayoutMonthStarted;
         public TextView expenseLayoutMonthlyCharge;
         public TextView expenseLayoutComment;
 
-        public ViewHolder(View view) {
+
+        public ViewHolder(View view, RecyclerViewInterface recyclerViewInterface) {
             super(view);
             expenseLayoutName = view.findViewById(R.id.expenseLayoutName);
             expenseLayoutMonthStarted = view.findViewById(R.id.expenseLayoutMonthStarted);
             expenseLayoutMonthlyCharge = view.findViewById(R.id.expenseLayoutMonthlyCharge);
             expenseLayoutComment = view.findViewById(R.id.expenseLayoutComment);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (recyclerViewInterface != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION){
+                            recyclerViewInterface.onItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
-    private ArrayList<ExpenseRecord> expenseList;
-    public ExpenseAdapter(ArrayList<ExpenseRecord> expenseList) {
-        this.expenseList = expenseList;
-    }
-
     @Override
     public ExpenseAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        // Inflate the custom layout
         View expenseView = inflater.inflate(R.layout.expense_layout, parent, false);
 
-        // Return a new holder instance
-        ViewHolder viewHolder = new ViewHolder(expenseView);
+        ViewHolder viewHolder = new ViewHolder(expenseView, recyclerViewInterface);
         return viewHolder;
     }
 
@@ -60,4 +73,5 @@ public class ExpenseAdapter extends
     public int getItemCount() {
         return expenseList.size();
     }
+
 }

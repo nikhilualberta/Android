@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">nnayyar1-ExpBook</string>
+    <string name="expense_name">Expense Name:</string>
+    <string name="month_started">Month Started:</string>
+    <string name="monthly_charge">Monthly Charge:</string>
+    <string name="comment">Comment:</string>
 </resources>

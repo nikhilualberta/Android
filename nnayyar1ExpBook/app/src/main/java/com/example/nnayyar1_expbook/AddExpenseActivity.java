@@ -29,6 +29,8 @@ public class AddExpenseActivity extends AppCompatActivity {
         addExpenseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // get all of the user input for adding a new expense and send it to the expense
+                // list activity
                 String name = expenseName.getText().toString();
                 String monthStarted = expenseMonthStarted.getText().toString();
                 double monthlyCharge = Double.parseDouble(expenseCharge.getText().toString());
@@ -39,12 +41,9 @@ public class AddExpenseActivity extends AppCompatActivity {
                 intent.putExtra("monthStarted", monthStarted);
                 intent.putExtra("monthlyCharge", monthlyCharge);
                 intent.putExtra("comment", comment);
-                setResult(RESULT_OK, intent);
+                setResult(1, intent);
 
-                // Finish this activity
                 finish();
-
-
             }
         });
     }
