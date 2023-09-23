@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Month Started"
-        android:focusable="false" />
+        />
 
     <EditText
         android:id="@+id/expenseCharge"
@@ -35,7 +35,7 @@
         android:inputType="text" />
 
     <Button
-        android:id="@+id/buttonAddExpense"
+        android:id="@+id/addExpenseButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add Expense" />

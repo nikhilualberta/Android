@@ -81,9 +81,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 confirmButton.setVisibility(View.INVISIBLE);
                 addCityInput.setVisibility(View.INVISIBLE);
-                String text = addCityInput.getText().toString();
-                dataList.add(text);
+                String inputText = addCityInput.getText().toString();
+                dataList.add(inputText);
                 cityAdapter.notifyDataSetChanged();
+                addCityInput.getText().clear();
             }
         });
 

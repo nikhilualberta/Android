@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ExpenseAdapter extends
         RecyclerView.Adapter<ExpenseAdapter.ViewHolder>{
@@ -39,7 +38,7 @@ public class ExpenseAdapter extends
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View expenseView = inflater.inflate(R.layout.expense_row_layout, parent, false);
+        View expenseView = inflater.inflate(R.layout.expense_layout, parent, false);
 
         // Return a new holder instance
         ViewHolder viewHolder = new ViewHolder(expenseView);

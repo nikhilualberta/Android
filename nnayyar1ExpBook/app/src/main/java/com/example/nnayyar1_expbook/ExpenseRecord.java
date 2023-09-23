@@ -1,6 +1,5 @@
 package com.example.nnayyar1_expbook;
 
-import java.util.Currency;
 import java.util.Date;
 
 public class ExpenseRecord {
