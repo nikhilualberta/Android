@@ -1,5 +1,6 @@
 package com.example.nnayyar1_expbook;
 
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -20,10 +21,11 @@ import java.util.Date;
 
 public class ExpenseListActivity extends AppCompatActivity {
     private RecyclerView expenseListView;
-    private ExpenseAdapter expenseAdaptor;
+    private ExpenseAdapter expenseAdapter;
     private ArrayList<ExpenseRecord> expenses;
 
     private FloatingActionButton addExpenseButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,19 +37,36 @@ public class ExpenseListActivity extends AppCompatActivity {
         expenseListView.setLayoutManager(new LinearLayoutManager(this));
 
         expenses = new ArrayList<>();
-        expenses.add(new ExpenseRecord("Rent", new Date(), 123.0));
 
-        expenseAdaptor = new ExpenseAdapter(expenses);
+        expenses.add(new ExpenseRecord("test", "monthStarted", 123));
 
-        expenseListView.setAdapter(expenseAdaptor);
+        expenseAdapter = new ExpenseAdapter(expenses);
+
+        expenseListView.setAdapter(expenseAdapter);
 
         addExpenseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ExpenseListActivity.this, AddExpenseActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);
             }
         });
 
+
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+            String name = data.getStringExtra("name");
+            String monthStarted = data.getStringExtra("monthStarted");
+            double monthlyCharge = data.getDoubleExtra("monthlyCharge", 0);
+            String comment = data.getStringExtra("comment");
+            expenses.add(new ExpenseRecord(name, monthStarted, monthlyCharge));
+            expenseAdapter.notifyDataSetChanged();
+            //
+        }
+
 }

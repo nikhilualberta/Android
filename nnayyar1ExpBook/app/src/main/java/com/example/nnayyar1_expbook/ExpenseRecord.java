@@ -4,17 +4,17 @@ import java.util.Date;
 
 public class ExpenseRecord {
     String name;
-    Date monthStarted;
+    String monthStarted;
     double monthlyCharge;
     String comment;
 
-    public ExpenseRecord(String name, Date monthStarted, double monthlyCharge, String comment){
+    public ExpenseRecord(String name, String monthStarted, double monthlyCharge, String comment){
         this.name = name;
         this.monthStarted = monthStarted;
         this.monthlyCharge = monthlyCharge;
         this.comment = comment;
     }
-    public ExpenseRecord(String name, Date monthStarted, double monthlyCharge){
+    public ExpenseRecord(String name, String monthStarted, double monthlyCharge){
         this.name = name;
         this.monthStarted = monthStarted;
         this.monthlyCharge = monthlyCharge;
@@ -28,11 +28,11 @@ public class ExpenseRecord {
         this.name = name;
     }
 
-    public Date getMonthStarted() {
+    public String getMonthStarted() {
         return monthStarted;
     }
 
-    public void setMonthStarted(Date monthStarted) {
+    public void setMonthStarted(String monthStarted) {
         this.monthStarted = monthStarted;
     }
 
