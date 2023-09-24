@@ -42,6 +42,7 @@ public class ViewExpense extends AppCompatActivity {
         confirmButton = findViewById(R.id.confirmChangesButton);
         deleteButton = findViewById(R.id.deleteButton);
 
+        // Send edited information back to the expense list activity
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,6 +63,7 @@ public class ViewExpense extends AppCompatActivity {
             }
         });
 
+        // send the position of the expense to be deleted back to the expense list activity
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

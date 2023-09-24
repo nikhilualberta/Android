@@ -4,4 +4,5 @@
     <string name="month_started">Month Started:</string>
     <string name="monthly_charge">Monthly Charge:</string>
     <string name="comment">Comment:</string>
+    <string name="total">Total Amount:</string>
 </resources>

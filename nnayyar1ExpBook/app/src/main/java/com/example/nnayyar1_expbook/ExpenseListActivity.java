@@ -6,10 +6,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -17,7 +20,7 @@ public class ExpenseListActivity extends AppCompatActivity implements RecyclerVi
     private RecyclerView expenseListView;
     private ExpenseAdapter expenseAdapter;
     private ArrayList<ExpenseRecord> expenses;
-
+    private TextView totalAmountTextView;
     private FloatingActionButton addExpenseButton;
 
     @Override
@@ -41,6 +44,10 @@ public class ExpenseListActivity extends AppCompatActivity implements RecyclerVi
                 startActivityForResult(intent, 1);
             }
         });
+
+        // display total amount for the month
+        totalAmountTextView = findViewById(R.id.totalAmount);
+        totalAmountTextView.setText("$" + computeTotal());
     }
 
     @Override
@@ -55,6 +62,7 @@ public class ExpenseListActivity extends AppCompatActivity implements RecyclerVi
             expenses.add(new ExpenseRecord(name, monthStarted, monthlyCharge, comment));
             expenseAdapter.notifyDataSetChanged();
         }
+        // get the data from the view expense activity and modifiy an existing expense
         else if (resultCode == 2) {
             String name = data.getStringExtra("name");
             String monthStarted = data.getStringExtra("monthStarted");
@@ -67,16 +75,17 @@ public class ExpenseListActivity extends AppCompatActivity implements RecyclerVi
             expenses.get(position).setComment(comment);
             expenseAdapter.notifyDataSetChanged();
         }
+        // get the data from the view expense activity and delete an expense
         else if (resultCode == 3) {
             int position = data.getIntExtra("position", 0);
             expenses.remove(position);
             expenseAdapter.notifyDataSetChanged();
         }
-
-
-        }
+        totalAmountTextView.setText("$" + computeTotal());
+    }
 
     @Override
+    // navigate to the view expense activity on click of an expense in the list
     public void onItemClick(int position) {
         Intent intent = new Intent(ExpenseListActivity.this, ViewExpense.class);
         intent.putExtra("name", expenses.get(position).getName());
@@ -85,5 +94,14 @@ public class ExpenseListActivity extends AppCompatActivity implements RecyclerVi
         intent.putExtra("comment", expenses.get(position).getComment());
         intent.putExtra("position", position);
         startActivityForResult(intent, 2);
+    }
+
+    public double computeTotal() {
+        double total = 0.00;
+        for (ExpenseRecord expense: expenses) {
+            total += expense.getMonthlyCharge();
+        }
+        double roundedTotal = (double) Math.round(total * 100) / 100;
+        return roundedTotal;
     }
 }
