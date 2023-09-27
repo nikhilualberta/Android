@@ -24,15 +24,12 @@ public class ExpenseAdapter extends
         public TextView expenseLayoutName;
         public TextView expenseLayoutMonthStarted;
         public TextView expenseLayoutMonthlyCharge;
-        public TextView expenseLayoutComment;
-
 
         public ViewHolder(View view, RecyclerViewInterface recyclerViewInterface) {
             super(view);
             expenseLayoutName = view.findViewById(R.id.expenseLayoutName);
             expenseLayoutMonthStarted = view.findViewById(R.id.expenseLayoutMonthStarted);
             expenseLayoutMonthlyCharge = view.findViewById(R.id.expenseLayoutMonthlyCharge);
-            expenseLayoutComment = view.findViewById(R.id.expenseLayoutComment);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -65,7 +62,6 @@ public class ExpenseAdapter extends
         holder.expenseLayoutName.setText(expense.getName());
         holder.expenseLayoutMonthStarted.setText(expense.getMonthStarted().toString());
         holder.expenseLayoutMonthlyCharge.setText(expense.getMonthlyCharge()+"");
-        holder.expenseLayoutComment.setText(expense.getComment());
     }
 
     @Override

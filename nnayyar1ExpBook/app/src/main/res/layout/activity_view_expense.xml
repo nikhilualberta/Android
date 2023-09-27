@@ -31,12 +31,24 @@
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
             android:text="@string/month_started"/>
-        <EditText
-            android:id="@+id/viewExpenseMonthStarted"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            />
+            android:orientation="horizontal">
+            <NumberPicker
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:id="@+id/yearPicker">
+            </NumberPicker>
+            <NumberPicker
+                android:id="@+id/monthPicker"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                >
+            </NumberPicker>
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout

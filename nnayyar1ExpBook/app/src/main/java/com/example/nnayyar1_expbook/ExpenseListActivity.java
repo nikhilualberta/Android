@@ -73,13 +73,13 @@ public class ExpenseListActivity extends AppCompatActivity implements RecyclerVi
             expenses.get(position).setMonthStarted(monthStarted);
             expenses.get(position).setMonthlyCharge(monthlyCharge);
             expenses.get(position).setComment(comment);
-            expenseAdapter.notifyDataSetChanged();
+            expenseAdapter.notifyItemChanged(position);
         }
         // get the data from the view expense activity and delete an expense
         else if (resultCode == 3) {
             int position = data.getIntExtra("position", 0);
             expenses.remove(position);
-            expenseAdapter.notifyDataSetChanged();
+            expenseAdapter.notifyItemRemoved(position);
         }
         totalAmountTextView.setText("$" + computeTotal());
     }

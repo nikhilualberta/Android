@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 
 public class ViewExpense extends AppCompatActivity {
     private EditText expenseName;
@@ -15,6 +16,8 @@ public class ViewExpense extends AppCompatActivity {
     private EditText expenseComment;
     private Button confirmButton;
     private Button deleteButton;
+    private NumberPicker yearPicker;
+    private NumberPicker monthPicker;
     private int position;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +33,20 @@ public class ViewExpense extends AppCompatActivity {
         position = intent.getIntExtra("position", 0);
 
         expenseName = findViewById(R.id.viewExpenseName);
-        expenseMonthStarted = findViewById(R.id.viewExpenseMonthStarted);
         expenseCharge = findViewById(R.id.viewExpenseCharge);
         expenseComment = findViewById(R.id.viewExpenseComment);
+        yearPicker = findViewById(R.id.yearPicker);
+        monthPicker = findViewById(R.id.monthPicker);
+
+        // set the range for year and month picker
+        yearPicker.setMinValue(2010);
+        yearPicker.setMaxValue(2030);
+        monthPicker.setMinValue(1);
+        monthPicker.setMaxValue(12);
 
         expenseName.setText(name);
-        expenseMonthStarted.setText(monthStarted);
+        yearPicker.setValue(Integer.parseInt(monthStarted.split("-")[0]));
+        monthPicker.setValue(Integer.parseInt(monthStarted.split("-")[1]));
         expenseCharge.setText(monthlyCharge);
         expenseComment.setText(comment);
 
@@ -47,7 +58,11 @@ public class ViewExpense extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String name = expenseName.getText().toString();
-                String monthStarted = expenseMonthStarted.getText().toString();
+                String month = "" + monthPicker.getValue();
+                if (1 <= monthPicker.getValue() && monthPicker.getValue() <= 9){
+                    month = "0" + monthPicker.getValue();
+                }
+                String monthStarted = yearPicker.getValue() + "-" + month;
                 double monthlyCharge = Double.parseDouble(expenseCharge.getText().toString());
                 String comment = expenseComment.getText().toString();
 

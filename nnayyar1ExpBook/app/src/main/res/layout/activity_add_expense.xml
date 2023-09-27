@@ -16,7 +16,7 @@
         android:id="@+id/expenseMonthStarted"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Month Started"
+        android:hint="@string/month_started"
         android:focusable="false"
         />
     <LinearLayout
