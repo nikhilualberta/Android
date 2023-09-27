@@ -8,7 +8,7 @@
         android:id="@+id/expenseName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Expense Name"
+        android:hint="@string/nameHint"
         android:maxLength="15"
         android:inputType="text" />
 
@@ -23,14 +23,14 @@
         android:id="@+id/expenseCharge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Monthly Charge"
+        android:hint="@string/chargeHint"
         android:inputType="numberDecimal" />
 
     <EditText
         android:id="@+id/expenseComment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Comment (Optional)"
+        android:hint="@string/commentHint"
         android:maxLength="20"
         android:inputType="text" />
 
@@ -38,6 +38,6 @@
         android:id="@+id/addExpenseButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Expense" />
+        android:text="@string/addExpense" />
 
 </LinearLayout>

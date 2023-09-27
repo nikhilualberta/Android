@@ -62,7 +62,7 @@ public class ExpenseListActivity extends AppCompatActivity implements RecyclerVi
             expenses.add(new ExpenseRecord(name, monthStarted, monthlyCharge, comment));
             expenseAdapter.notifyDataSetChanged();
         }
-        // get the data from the view expense activity and modifiy an existing expense
+        // get the data from the view expense activity and modify an existing expense
         else if (resultCode == 2) {
             String name = data.getStringExtra("name");
             String monthStarted = data.getStringExtra("monthStarted");
