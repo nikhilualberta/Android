@@ -1,3 +1,10 @@
+/*
+References:
+[1] for displaying a toast
+ From: Stack Overflow
+ Date of Publish: Aug 17, 2010
+ URL: https://stackoverflow.com/questions/3500197/how-to-display-toast-in-android
+ */
 package com.example.nnayyar1_expbook;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
+import android.widget.Toast;
 
 public class AddExpenseActivity extends AppCompatActivity {
     private EditText expenseName;
@@ -41,6 +49,10 @@ public class AddExpenseActivity extends AppCompatActivity {
                 // get all of the user input for adding a new expense and send it to the expense
                 // list activity
                 String name = expenseName.getText().toString();
+                if (name.equals("")){
+                    Toast.makeText(AddExpenseActivity.this, "Please fill in a name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 String month = "" + monthPicker.getValue();
                 if (1 <= monthPicker.getValue() && monthPicker.getValue() <= 9){
                    month = "0" + monthPicker.getValue();

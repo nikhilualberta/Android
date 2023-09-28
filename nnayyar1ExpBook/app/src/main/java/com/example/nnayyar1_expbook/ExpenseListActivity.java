@@ -47,7 +47,7 @@ public class ExpenseListActivity extends AppCompatActivity implements RecyclerVi
 
         // display total amount for the month
         totalAmountTextView = findViewById(R.id.totalAmount);
-        totalAmountTextView.setText("$" + computeTotal());
+        totalAmountTextView.setText(computeTotal());
     }
 
     @Override
@@ -81,7 +81,7 @@ public class ExpenseListActivity extends AppCompatActivity implements RecyclerVi
             expenses.remove(position);
             expenseAdapter.notifyItemRemoved(position);
         }
-        totalAmountTextView.setText("$" + computeTotal());
+        totalAmountTextView.setText(computeTotal());
     }
 
     @Override
@@ -96,12 +96,13 @@ public class ExpenseListActivity extends AppCompatActivity implements RecyclerVi
         startActivityForResult(intent, 2);
     }
 
-    public double computeTotal() {
+    public String computeTotal() {
         double total = 0.00;
         for (ExpenseRecord expense: expenses) {
             total += expense.getMonthlyCharge();
         }
         double roundedTotal = (double) Math.round(total * 100) / 100;
-        return roundedTotal;
+        String stringTotal = "$" + String.format("%.2f", total);
+        return stringTotal;
     }
 }
