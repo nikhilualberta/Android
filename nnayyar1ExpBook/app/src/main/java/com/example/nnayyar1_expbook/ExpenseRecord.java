@@ -3,10 +3,10 @@ package com.example.nnayyar1_expbook;
 import java.util.Date;
 
 public class ExpenseRecord {
-    String name;
-    String monthStarted;
-    double monthlyCharge;
-    String comment;
+    private String name;
+    private String monthStarted;
+    private double monthlyCharge;
+    private String comment;
 
     public ExpenseRecord(String name, String monthStarted, double monthlyCharge, String comment){
         this.name = name;
