@@ -61,6 +61,7 @@ public class AddExpenseActivity extends AppCompatActivity {
                 // list activity
                 String name = expenseName.getText().toString();
                 if (name.equals("")){
+                    // adapted from reference [1]
                     Toast.makeText(AddExpenseActivity.this, "Please fill in a name", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -85,6 +86,8 @@ public class AddExpenseActivity extends AppCompatActivity {
     }
 }
 
+// class that serves as an input filter for getting the monthly charge from the user
+// This class was adapted from reference [2]
 class DecimalDigitsInputFilter implements InputFilter {
     private Pattern mPattern;
 
