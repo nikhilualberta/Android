@@ -96,8 +96,7 @@ public class ExpenseListActivity extends AppCompatActivity implements RecyclerVi
         startActivityForResult(intent, 2);
     }
 
-    public String computeTotal() {
-        double total = 0.00;
+    public String computeTotal() {        double total = 0.00;
         for (ExpenseRecord expense: expenses) {
             total += expense.getMonthlyCharge();
         }

@@ -11,7 +11,6 @@ import android.widget.NumberPicker;
 
 public class ViewExpense extends AppCompatActivity {
     private EditText expenseName;
-    private EditText expenseMonthStarted;
     private EditText expenseCharge;
     private EditText expenseComment;
     private Button confirmButton;

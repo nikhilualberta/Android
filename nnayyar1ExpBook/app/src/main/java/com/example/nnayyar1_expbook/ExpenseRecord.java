@@ -14,11 +14,6 @@ public class ExpenseRecord {
         this.monthlyCharge = monthlyCharge;
         this.comment = comment;
     }
-    public ExpenseRecord(String name, String monthStarted, double monthlyCharge){
-        this.name = name;
-        this.monthStarted = monthStarted;
-        this.monthlyCharge = monthlyCharge;
-    }
 
     public String getName() {
         return name;
