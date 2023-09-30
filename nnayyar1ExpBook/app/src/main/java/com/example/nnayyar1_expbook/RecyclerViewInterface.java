@@ -7,6 +7,10 @@ References:
  */
 package com.example.nnayyar1_expbook;
 
+/*
+This class declares the interface for our ExpenseListActivity to allow us to click on items in
+our recycle viewer.
+ */
 public interface RecyclerViewInterface {
     void onItemClick(int position);
 }

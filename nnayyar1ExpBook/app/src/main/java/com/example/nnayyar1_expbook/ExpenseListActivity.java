@@ -14,6 +14,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
+/*
+This class serves as the main activity and manages a list of Expense Records.
+It displays a list of expenses, a total monthly charge of all expenses, and a add button.
+Clicking the add button allows the user to add a new expense.
+Clicking on an expense allows the user to edit or delete the expense.
+ */
 public class ExpenseListActivity extends AppCompatActivity implements RecyclerViewInterface{
     private RecyclerView expenseListView;
     private ExpenseAdapter expenseAdapter;
@@ -94,12 +100,13 @@ public class ExpenseListActivity extends AppCompatActivity implements RecyclerVi
         startActivityForResult(intent, 2);
     }
 
-    public String computeTotal() {        double total = 0.00;
+    public String computeTotal() {
+        double total = 0.00;
         for (ExpenseRecord expense: expenses) {
             total += expense.getMonthlyCharge();
         }
         double roundedTotal = (double) Math.round(total * 100) / 100;
-        String stringTotal = "$" + String.format("%.2f", total);
+        String stringTotal = "$" + String.format("%.2f", roundedTotal);
         return stringTotal;
     }
 }

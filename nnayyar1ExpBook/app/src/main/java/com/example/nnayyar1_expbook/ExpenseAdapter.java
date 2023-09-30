@@ -11,15 +11,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+/*
+This class is the adapter class to allow us to display the list of expense records. The name,
+month started, and monthly charge are shown for each record, and the adapter allows you to click
+on an expense.
+ */
 public class ExpenseAdapter extends
         RecyclerView.Adapter<ExpenseAdapter.ViewHolder>{
-
     private ArrayList<ExpenseRecord> expenseList;
+    private RecyclerViewInterface recyclerViewInterface;
+
     public ExpenseAdapter(ArrayList<ExpenseRecord> expenseList, RecyclerViewInterface recyclerViewInterface) {
         this.expenseList = expenseList;
         this.recyclerViewInterface = recyclerViewInterface;
     }
-    private RecyclerViewInterface recyclerViewInterface;
+
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView expenseLayoutName;
         public TextView expenseLayoutMonthStarted;
@@ -61,7 +67,7 @@ public class ExpenseAdapter extends
         // Bind the data to the views
         holder.expenseLayoutName.setText(expense.getName());
         holder.expenseLayoutMonthStarted.setText(expense.getMonthStarted().toString());
-        holder.expenseLayoutMonthlyCharge.setText(expense.getMonthlyCharge()+"");
+        holder.expenseLayoutMonthlyCharge.setText("$"+ String.format("%.2f", expense.getMonthlyCharge()));
     }
 
     @Override

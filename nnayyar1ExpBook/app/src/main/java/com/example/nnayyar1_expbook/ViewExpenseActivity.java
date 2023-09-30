@@ -4,13 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
+/*
+This class manages viewing expenses from the expense list. It allows the user to edit or delete
+existing expenses.
+ */
 public class ViewExpenseActivity extends AppCompatActivity {
     private EditText expenseName;
     private EditText expenseCharge;
@@ -54,6 +60,7 @@ public class ViewExpenseActivity extends AppCompatActivity {
         yearPicker.setValue(Integer.parseInt(monthStarted.split("-")[0]));
         monthPicker.setValue(Integer.parseInt(monthStarted.split("-")[1]));
         expenseCharge.setText(monthlyCharge);
+        expenseCharge.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(6, 2)});
         expenseComment.setText(comment);
 
         confirmButton = findViewById(R.id.confirmChangesButton);
@@ -64,13 +71,18 @@ public class ViewExpenseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String name = expenseName.getText().toString();
-                String month = "" + monthPicker.getValue();
-                if (1 <= monthPicker.getValue() && monthPicker.getValue() <= 9){
-                    month = "0" + monthPicker.getValue();
-                }
-                String monthStarted = yearPicker.getValue() + "-" + month;
-                double monthlyCharge = Double.parseDouble(expenseCharge.getText().toString());
+                String monthStarted = ExpenseValidator.formatDate(monthPicker, yearPicker);
+                String charge = expenseCharge.getText().toString();
                 String comment = expenseComment.getText().toString();
+                if (!ExpenseValidator.checkName(name)){
+                    Toast.makeText(ViewExpenseActivity.this, "Please fill in a name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (!ExpenseValidator.checkCharge(charge)){
+                    Toast.makeText(ViewExpenseActivity.this, "Please fill in the monthly charge amount", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                double monthlyCharge = Double.parseDouble(charge);
 
                 Intent intent = new Intent(getApplicationContext(), ExpenseListActivity.class);
                 intent.putExtra("name", name);

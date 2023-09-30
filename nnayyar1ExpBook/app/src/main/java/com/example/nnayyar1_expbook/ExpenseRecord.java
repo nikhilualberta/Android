@@ -2,6 +2,9 @@ package com.example.nnayyar1_expbook;
 
 import java.util.Date;
 
+/*
+This class defines the expense record format.
+ */
 public class ExpenseRecord {
     private String name;
     private String monthStarted;
