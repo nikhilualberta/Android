@@ -18,7 +18,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.text.Spanned;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +26,7 @@ import android.widget.Toast;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.Calendar;
 
 public class AddExpenseActivity extends AppCompatActivity {
     private EditText expenseName;
@@ -48,11 +48,20 @@ public class AddExpenseActivity extends AppCompatActivity {
         monthPicker = findViewById(R.id.monthPicker);
 
         expenseCharge.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(6, 2)});
+
+        // limit the max year and month to the current year and month
+        Calendar currentDate = Calendar.getInstance();
+        int currentYear = currentDate.get(Calendar.YEAR);
+        int currentMonth = currentDate.get(Calendar.MONTH) + 1;
+
         yearPicker.setMinValue(2020);
-        yearPicker.setMaxValue(2025);
+        yearPicker.setMaxValue(currentYear);
 
         monthPicker.setMinValue(1);
-        monthPicker.setMaxValue(12);
+        monthPicker.setMaxValue(currentMonth);
+
+        yearPicker.setValue(currentYear);
+        monthPicker.setValue(currentMonth);
 
         addExpenseButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +78,12 @@ public class AddExpenseActivity extends AppCompatActivity {
                    month = "0" + monthPicker.getValue();
                 }
                 String monthStarted = yearPicker.getValue() + "-" + month;
+                if (expenseCharge.getText().toString().equals("")) {
+                    Toast.makeText(AddExpenseActivity.this, "Please fill in the monthly charge amount", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 double monthlyCharge = Double.parseDouble(expenseCharge.getText().toString());
+
                 String comment = expenseComment.getText().toString();
 
                 Intent intent = new Intent(getApplicationContext(), ExpenseListActivity.class);

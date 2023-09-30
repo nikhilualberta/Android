@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/nameHint"
         android:maxLength="15"
-        android:inputType="text" />
+        android:inputType="textPersonName" />
 
     <EditText
         android:id="@+id/expenseMonthStarted"

@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 public class ExpenseListActivity extends AppCompatActivity implements RecyclerViewInterface{
@@ -87,7 +85,7 @@ public class ExpenseListActivity extends AppCompatActivity implements RecyclerVi
     @Override
     // navigate to the view expense activity on click of an expense in the list
     public void onItemClick(int position) {
-        Intent intent = new Intent(ExpenseListActivity.this, ViewExpense.class);
+        Intent intent = new Intent(ExpenseListActivity.this, ViewExpenseActivity.class);
         intent.putExtra("name", expenses.get(position).getName());
         intent.putExtra("monthStarted", expenses.get(position).getMonthStarted());
         intent.putExtra("monthlyCharge", expenses.get(position).getMonthlyCharge());

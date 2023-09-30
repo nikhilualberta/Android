@@ -9,7 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 
-public class ViewExpense extends AppCompatActivity {
+import java.util.Calendar;
+
+public class ViewExpenseActivity extends AppCompatActivity {
     private EditText expenseName;
     private EditText expenseCharge;
     private EditText expenseComment;
@@ -37,11 +39,16 @@ public class ViewExpense extends AppCompatActivity {
         yearPicker = findViewById(R.id.yearPicker);
         monthPicker = findViewById(R.id.monthPicker);
 
-        // set the range for year and month picker
-        yearPicker.setMinValue(2010);
-        yearPicker.setMaxValue(2030);
+        // limit the max year and month to the current year and month
+        Calendar currentDate = Calendar.getInstance();
+        int currentYear = currentDate.get(Calendar.YEAR);
+        int currentMonth = currentDate.get(Calendar.MONTH) + 1;
+
+        yearPicker.setMinValue(2020);
+        yearPicker.setMaxValue(currentYear);
+
         monthPicker.setMinValue(1);
-        monthPicker.setMaxValue(12);
+        monthPicker.setMaxValue(currentMonth);
 
         expenseName.setText(name);
         yearPicker.setValue(Integer.parseInt(monthStarted.split("-")[0]));
