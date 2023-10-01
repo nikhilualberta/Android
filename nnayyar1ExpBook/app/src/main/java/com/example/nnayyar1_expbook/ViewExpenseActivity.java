@@ -15,7 +15,8 @@ import java.util.Calendar;
 
 /*
 This class manages viewing expenses from the expense list. It allows the user to edit or delete
-existing expenses.
+existing expenses. This class was created as a separate activity from the add expense class since
+the UI is different to support deletes, and to increase readability.
  */
 public class ViewExpenseActivity extends AppCompatActivity {
     private EditText expenseName;
@@ -45,16 +46,15 @@ public class ViewExpenseActivity extends AppCompatActivity {
         yearPicker = findViewById(R.id.yearPicker);
         monthPicker = findViewById(R.id.monthPicker);
 
-        // limit the max year and month to the current year and month
+        // limit the max year to the current year
         Calendar currentDate = Calendar.getInstance();
         int currentYear = currentDate.get(Calendar.YEAR);
-        int currentMonth = currentDate.get(Calendar.MONTH) + 1;
 
         yearPicker.setMinValue(2020);
         yearPicker.setMaxValue(currentYear);
 
         monthPicker.setMinValue(1);
-        monthPicker.setMaxValue(currentMonth);
+        monthPicker.setMaxValue(12);
 
         expenseName.setText(name);
         yearPicker.setValue(Integer.parseInt(monthStarted.split("-")[0]));
@@ -76,6 +76,10 @@ public class ViewExpenseActivity extends AppCompatActivity {
                 String comment = expenseComment.getText().toString();
                 if (!ExpenseValidator.checkName(name)){
                     Toast.makeText(ViewExpenseActivity.this, "Please fill in a name", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (!ExpenseValidator.checkDate(monthPicker, yearPicker)) {
+                    Toast.makeText(ViewExpenseActivity.this, "Cannot chose a date in the future", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (!ExpenseValidator.checkCharge(charge)){
