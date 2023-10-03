@@ -12,12 +12,12 @@
         android:maxLength="15"
         android:inputType="textPersonName" />
 
-    <EditText
-        android:id="@+id/expenseMonthStarted"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/month_started"
-        android:focusable="false"
+        android:hint="Month Started"
+        android:textSize="18sp"
+        android:layout_marginLeft="4dp"
         />
     <LinearLayout
         android:layout_width="match_parent"
