@@ -49,7 +49,7 @@ public class AddExpenseActivity extends AppCompatActivity {
         int currentYear = currentDate.get(Calendar.YEAR);
         int currentMonth = currentDate.get(Calendar.MONTH) + 1;
 
-        yearPicker.setMinValue(2020);
+        yearPicker.setMinValue(1970);
         yearPicker.setMaxValue(currentYear);
 
         monthPicker.setMinValue(1);

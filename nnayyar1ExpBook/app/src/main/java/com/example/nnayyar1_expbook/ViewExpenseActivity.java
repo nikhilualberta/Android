@@ -50,7 +50,7 @@ public class ViewExpenseActivity extends AppCompatActivity {
         Calendar currentDate = Calendar.getInstance();
         int currentYear = currentDate.get(Calendar.YEAR);
 
-        yearPicker.setMinValue(2020);
+        yearPicker.setMinValue(1970);
         yearPicker.setMaxValue(currentYear);
 
         monthPicker.setMinValue(1);
