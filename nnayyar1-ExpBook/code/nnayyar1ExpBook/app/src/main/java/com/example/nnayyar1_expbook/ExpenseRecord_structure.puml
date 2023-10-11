@@ -1,0 +1,176 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": "",
+    "treatFinalFieldsAsMandatory": false
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": false,
+    "cutConstructors": false
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false, // root node is included
+    "useMethodCallsForStructureDiagram": "ForwardOnly" // ForwardOnly, BothDirections, No
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "com.example.nnayyar1_expbook.ExpenseRecord",
+  "extensionCallbackMethod": "" // qualified.class.name#methodName - signature: public static String method(String)
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_1322970774 { 
+   	label=example
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_4760394 { 
+   	label=nnayyar1_expbook
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   ExpenseAdapter2055537897[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ExpenseAdapter</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   expenseList: ArrayList&lt;ExpenseRecord&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   recyclerViewInterface: RecyclerViewInterface [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ ExpenseAdapter(expenseList: ArrayList&lt;ExpenseRecord&gt;, recyclerViewInterface: RecyclerViewInterface)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getItemCount(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ onBindViewHolder(holder: ViewHolder, position: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ onCreateViewHolder(parent: ViewGroup, viewType: int): ViewHolder</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ExpenseListActivity2055537897[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ExpenseListActivity</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   addExpenseButton: FloatingActionButton [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   expenseAdapter: ExpenseAdapter [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   expenseListView: RecyclerView [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   expenses: ArrayList&lt;ExpenseRecord&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   totalAmountTextView: TextView [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ computeTotal(): String</TD></TR>
+<TR><TD ALIGN="LEFT" ># onActivityResult(requestCode: int, resultCode: int, data: Intent)</TD></TR>
+<TR><TD ALIGN="LEFT" ># onCreate(savedInstanceState: Bundle)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ onItemClick(position: int)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ExpenseRecord2055537897[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ExpenseRecord</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   comment: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   monthStarted: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   monthlyCharge: double [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   name: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ ExpenseRecord(name: String, monthStarted: String, monthlyCharge: double, comment: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ ExpenseRecord(name: String, monthStarted: String, monthlyCharge: double)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getComment(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getMonthStarted(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getMonthlyCharge(): double</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getName(): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setComment(comment: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setMonthStarted(monthStarted: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setMonthlyCharge(monthlyCharge: double)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ setName(name: String)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+ExpenseAdapter2055537897 -> ExpenseListActivity2055537897[label="recyclerViewInterface
+[0..1]", arrowhead=none];
+ExpenseAdapter2055537897 -> ExpenseRecord2055537897[label="expenseList
+[0..*]"];
+ExpenseListActivity2055537897 -> ExpenseAdapter2055537897[label="expenseAdapter
+[0..1]"];
+ExpenseListActivity2055537897 -> ExpenseRecord2055537897[label="expenses
+[0..*]"];
+    
+}
+@enduml
