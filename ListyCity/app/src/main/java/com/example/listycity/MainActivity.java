@@ -3,6 +3,7 @@ package com.example.listycity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements AddCityFragment.O
     private ArrayAdapter<City> cityAdapter;
     private FirebaseFirestore db;
     private CollectionReference citiesRef;
+    int selectedPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,29 @@ public class MainActivity extends AppCompatActivity implements AddCityFragment.O
         cityList.setAdapter(cityAdapter);
 
         final FloatingActionButton addButton = findViewById(R.id.add_city_button);
+        final FloatingActionButton deleteButton = findViewById(R.id.delete_city_button);
+
+        cityList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedPosition = position;
+            }
+        });
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    citiesRef.document(dataList.get(selectedPosition).getName())
+                            .delete();
+                    cityList.clearChoices();
+                    selectedPosition = -1;
+                }
+                catch(Exception e) {
+                }
+            }
+        });
+
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
